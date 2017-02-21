@@ -1,0 +1,32 @@
+<form novalidate [formGroup]="formDate" style="margin-left: 5%;">
+	<div><h3>Show schedule</h3></div>
+	<span>
+		<label for="hall">Select Hall : </label>
+		<select type="hall" name="hall" formControlName="hall">
+			<option value="">--Select Hall--</option>
+			<option *ngFor="let hall of halls | async" value="{{hall.$key}}">{{hall.name}}</option>
+		</select>
+	</span> | 
+	<span *ngIf="dateYesterday">
+		<label for="date">Select Date : </label>
+		<input type="date" name="date" formControlName="date" min="{{dateYesterday}}">
+	</span>
+	<span>
+		<button (click)="submitDate()" [disabled]="formDate.invalid">Create show</button>
+	</span>
+</form>
+<form *ngIf="dateKey" [formGroup]="formSchedule" style="margin-left: 5%;">	
+	<div formArrayName="schedules">
+		<div *ngFor="let schedule of schedules.controls;let i=index;" [formGroupName]="i">
+			<label for="endTime">Last ticket issuing time</label>
+			<input type="time" formControlName="endTime">
+			<select formControlName="film">
+				<option value="">--Select Film--</option>
+				<option *ngFor="let film of films | async" value="{{film.name}}">{{film.name}}</option>
+			</select>
+			<input type="number" formControlName="tickets" placeholder="Tickets issued">
+			<button (click)="submitSchedule()">Save</button>
+		</div>	
+		<button (click)="addSchedules()">Add Schedules</button>
+	</div>
+</form>

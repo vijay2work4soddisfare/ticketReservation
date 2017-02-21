@@ -1,0 +1,9 @@
+<h2>Welcome Admin</h2>
+<app-add-manager (data)="admin.manager().push($event)"></app-add-manager>
+<u>
+	<li *ngFor="let manager of managers | async">
+		Theater : {{manager.name}} |
+		Email : {{manager.email}}
+		<button (click)="admin.manager().remove(manager.$key)">Remove</button>
+	</li>
+</u>

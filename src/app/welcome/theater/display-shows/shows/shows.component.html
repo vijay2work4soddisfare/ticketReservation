@@ -1,0 +1,6 @@
+<label for="showsList">Shows</label>
+<ul name="showsList">
+	<li *ngFor="let show of shows | async">
+		<button>{{show.date}}</button>
+	</li>
+</ul>

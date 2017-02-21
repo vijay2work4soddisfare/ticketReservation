@@ -1,0 +1,14 @@
+<button (click)="addFilm=!addFilm;"><span *ngIf="!addFilm">Add Film</span><span *ngIf="addFilm">Close Add Film</span></button>
+<span *ngIf="addFilm">
+	<app-add-film (data)="data.emit($event);addFilm=false;"></app-add-film>
+	<div>
+		<label for="filmsList">Films</label>
+		<ul name="filmsList">
+			<li *ngFor="let film of films | async">
+				{{film.name}} <button (click)="films.remove(film.$key)">
+					Remove
+				</button>
+			</li>
+		</ul>
+	</div>
+</span>

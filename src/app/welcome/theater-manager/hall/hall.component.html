@@ -1,0 +1,8 @@
+<app-add-hall (data)="data.emit($event)"></app-add-hall>
+<label for="hallsList">Halls List</label>
+<ul name="hallsList">
+	<li *ngFor="let hall of halls | async">
+		{{hall.name}}
+		<button (click)="halls.remove(hall.$key)">Remove</button>
+	</li>
+</ul>

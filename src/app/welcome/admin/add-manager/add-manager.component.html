@@ -1,0 +1,14 @@
+<form novalidate [formGroup]="form" style="margin-left: 5%;">
+	<div><h3>Add Theater Manager</h3></div>
+	<div>
+		<label for="name">Theater name : </label>
+		<input type="text" name="name" formControlName="name" placeholder="Theater name">
+	</div>
+	<div>
+		<label for="email">Manager Email : </label>
+		<input type="text" name="email" formControlName="email" placeholder="Manager Email">
+	</div>
+	<div>
+		<button (click)="submit()" [disabled]="form.invalid">Add Manager</button>
+	</div>
+</form>

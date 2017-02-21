@@ -1,0 +1,10 @@
+<h2>Welcome {{managerInfo?.name}} Theater Manager !</h2>
+<app-add-operators (data)="manager.theaterOperators(managerInfo.$key).push($event)"></app-add-operators>
+<label for="operatorList">Operators</label>
+<ul name="operatorList">
+	<li *ngFor="let operator of operators | async">
+		{{operator.name}} | Email : {{operator.email}}
+		<button (click)="manager.theaterOperators(managerInfo.$key).remove(operator.$key)">Remove</button>
+	</li>
+</ul>
+<app-hall (data)="manager.halls(managerInfo.$key).push($event)" [halls]="halls"></app-hall>
