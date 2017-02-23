@@ -9,11 +9,11 @@ import { AppComponent } from './app.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 const myFirebaseConfig = {
-    apiKey: "AIzaSyDxkAHVgwFPYKZpeK_CkJirmzwf3xEYqgw",
-    authDomain: "get-my-tickets.firebaseapp.com",
-    databaseURL: "https://get-my-tickets.firebaseio.com",
-    storageBucket: "get-my-tickets.appspot.com",
-    messagingSenderId: "887081551176"
+    apiKey: "AIzaSyBc-5CexKJ6FfEIubghIi1ivWgaUlnx08o",
+    authDomain: "ticket-temp-booking.firebaseapp.com",
+    databaseURL: "https://ticket-temp-booking.firebaseio.com",
+    storageBucket: "ticket-temp-booking.appspot.com",
+    messagingSenderId: "275086311192"
 };
 
 const myFirebaseAuthConfig = {

@@ -48,11 +48,18 @@ export class UpdateSchedulesComponent implements OnInit {
     .update(this.singleSchedule.scheduleDetails.$key,this.form.value);
   }
   cancelShows(){
-  	this.theater.showsSchedule(this.singleSchedule.showKey)
-    .remove(this.singleSchedule.scheduleDetails.$key);
+    this.theater.showsSchedule(this.singleSchedule.showKey)
+    .remove(this.singleSchedule.scheduleDetails.$key).then(response=>{
+      this.theater.showsSchedule(this.singleSchedule.showKey)
+      .first().subscribe(data=>{
+        console.log("inside shows : ",data)
+        if(data.length==0) { 
+    	    //remove date of shows
+        }
+      })
+    });
     this.theater.filmsForUser()
     .remove(this.singleSchedule.scheduleDetails.$key);
-    //check if last schedule of date then delete date
   }
 
 }

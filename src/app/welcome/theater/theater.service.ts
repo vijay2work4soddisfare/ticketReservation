@@ -68,36 +68,40 @@ export class TheaterService {
   	return this.af.database.object(path);
   }
   removeShowsSchedule(showKey){
-    /*
+    
     this.af.database.list("halls/"+this.managerInfoKey).first().subscribe(hallInfo=>{
       if(hallInfo.length!=0) {
         hallInfo.map(eachHall=>{
           this.af.database.list("date/"+eachHall.$key).first().subscribe(dateInfo=>{
             if(dateInfo.length!=0) {
               dateInfo.map(eachDate=>{
-
-                this.af.database.list("schedules/"+eachDate.$key).first().subscribe(schedulesInfo=>{
-                  if(schedulesInfo.length!=0) {
-                    schedulesInfo.map(eachSchedule=>{
-
-                    });
-                  }
-                });
+                if(eachDate.$key==showKey) {
+                  console.log("foundDate");
+                  this.af.database.list("schedules/"+eachDate.$key).first().subscribe(schedulesInfo=>{
+                    if(schedulesInfo.length!=0) {
+                      schedulesInfo.map(eachSchedule=>{
+                        this.showsSchedule(showKey)
+                        .remove(eachSchedule.$key);
+                        this.filmsForUser()
+                        .remove(eachSchedule.$key);
+                      });
+                      this.af.database.list("date/"+eachHall.$key).remove(showKey);
+                    }else{
+                      this.af.database.list("date/"+eachHall.$key).remove(showKey);
+                    }
+                  });
+                }
               });
             }
           });
         });
       }
-    });*/
+    });
 
 
     //get all the shows fot this date
 
     //delete single show
-    /*this.showsSchedule(this.singleSchedule.showKey)
-    .remove(.$key);
-    this.filmsForUser()
-    .remove(.$key);*/
 
 
     //if last show for the date delete the date
