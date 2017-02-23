@@ -1,0 +1,16 @@
+<span>
+	<button *ngIf="!view" (click)="view=true">Add schedule</button>
+</span>
+<div *ngIf="view" >
+	<form novalidate [formGroup]="form" style="margin-left: 5%;">
+		<label for="endTime">Last ticket issuing time</label>
+		<input type="time" formControlName="endTime">
+		<select formControlName="film">
+			<option value="">--Select Film--</option>
+			<option *ngFor="let film of films | async" value="{{film.name}}">{{film.name}}</option>
+		</select>
+		<input type="number" formControlName="ticketsReserved" placeholder="Tickets issued">
+		<button (click)="submit();view=false;" [disabled]="form.invalid">Save</button>
+		<button (click)="submit();view=true;" *ngIf="form.valid">Add schedule</button>
+	</form>
+</div>

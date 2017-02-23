@@ -12,10 +12,21 @@ export class ShowsComponent implements OnInit {
 	@Input('hallKey') set getShows(hallKey){
 		this.shows=this.theater.dateOfShows(hallKey);
 	};
+  @Input() films;
+  @Input() operatorKey;
+  @Input() managerKey;
 	shows;
+  showKey;
+  schedules;
   constructor(private theater:TheaterService) { }
-
+  displaySchedules(showKey){
+    this.showKey=showKey;
+    this.schedules=this.theater.showsSchedule(showKey);
+  }
   ngOnInit() {
+  }
+  removeShow(key){
+    this.theater.removeShowsSchedule(key);
   }
 
 }

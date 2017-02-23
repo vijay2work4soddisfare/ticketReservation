@@ -28,8 +28,12 @@ manager=new Subject<any>();
   theaterOperators(managerKey){
     return this.af.database.list("operatorLogin/"+managerKey);
   }
+  snacks(managerKey){
+    return this.af.database.object("snacks/"+managerKey);
+  }
   halls(managerKey){
   	return this.af.database.list("halls/"+managerKey);
   }
+
 
 }

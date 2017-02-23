@@ -1,3 +1,3 @@
 <h2> Welcome {{operator?.name}} </h2>
 <app-film [films]="films" (data)="theater.filmsForOperator(managerKey).push($event)"></app-film>
-<app-display-shows [films]="films" [halls]="halls"></app-display-shows>
+<app-display-shows [films]="films" [halls]="halls" [operatorKey]="operator?.$key"></app-display-shows>

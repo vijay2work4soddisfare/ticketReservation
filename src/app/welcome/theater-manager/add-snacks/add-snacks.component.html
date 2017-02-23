@@ -1,0 +1,15 @@
+<form novalidate [formGroup]="form" style="margin-left: 5%;">
+	<div><h3>Add Snacks</h3></div>
+	<div>
+		<label for="pepsi">Drinks : </label>
+		<input type="checkbox" name="pepsi" formControlName="pepsi" (change)="data.emit({'pepsi':$event.target.checked})">Pepsi/Coke
+	</div>
+	<div>
+		<label for="popcorn">Snacks : </label>
+		<input type="checkbox" name="popcorn" formControlName="popcorn" (change)="data.emit({'popcorn':$event.target.checked})">Popcorn
+	</div>
+	<div>
+		<label for="icecream">Ice-cream : </label>
+		<input type="checkbox" name="icecream" formControlName="icecream" (change)="data.emit({'icecream':$event.target.checked})">Ice-cream
+	</div>
+</form>

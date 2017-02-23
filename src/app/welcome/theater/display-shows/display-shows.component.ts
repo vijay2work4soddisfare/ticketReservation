@@ -14,19 +14,33 @@ export class DisplayShowsComponent implements OnInit {
   halls;
   @Input('films') set setfilms(films){
     this.films=films;
-    //console.log("inside display shows : ",this.films);
   };
   films;
-
+  managerKey;
+  @Input() operatorKey;
   dateOfShows($event){
-
-        console.log($event);
-    this.theater.dateOfShows($event.$key).push({'date':$event.date})
+    this.theater.dateOfShows($event.hall).push({'date':$event.date})
       .then(result=>{
-        console.log(result,' : result');
+        $event.schedules.forEach(singleSchedule=>{
+          this.theater.showsSchedule(result.key).push(singleSchedule)
+          .then(scheduleData=>{//record in for operators film list
+            //console.log(scheduleData);
+            this.theater.filmsForUser().update(scheduleData.key,{
+              name:singleSchedule.film,
+              managerKey:this.managerKey,
+              operatorKey:result.key
+            });
+          });
+        });
       });
   }
-  constructor(private theater:TheaterService) { }
+  schedules($event){
+  }
+  constructor(private theater:TheaterService) {
+    this.theater.getManagerKey().subscribe(managerKey=>{
+      this.managerKey=managerKey;
+    })
+  }
 
   ngOnInit() {
   }

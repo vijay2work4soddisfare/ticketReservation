@@ -1,0 +1,11 @@
+<app-add-items (data)="items.push($event)"></app-add-items>
+<div>
+	<label for="filmsList">Products</label>
+	<ul name="filmsList">
+		<li *ngFor="let item of items | async">
+			{{item.name}}  <button (click)="items.remove(item.$key)">
+				Remove
+			</button>
+		</li>
+	</ul>
+</div>

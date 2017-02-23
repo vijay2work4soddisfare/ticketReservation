@@ -1,0 +1,10 @@
+<div>
+	<label for="filmsList">Products</label>
+	<ul name="filmsList">
+		<li *ngFor="let order of orders | async">
+			{{order.name}}  <button (click)="orders.remove(order.$key)">
+				Remove
+			</button>
+		</li>
+	</ul>
+</div>

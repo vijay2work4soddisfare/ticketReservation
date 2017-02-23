@@ -1,10 +1,27 @@
 <h2>Welcome {{managerInfo?.name}} Theater Manager !</h2>
-<app-add-operators (data)="manager.theaterOperators(managerInfo.$key).push($event)"></app-add-operators>
-<label for="operatorList">Operators</label>
-<ul name="operatorList">
-	<li *ngFor="let operator of operators | async">
-		{{operator.name}} | Email : {{operator.email}}
-		<button (click)="manager.theaterOperators(managerInfo.$key).remove(operator.$key)">Remove</button>
-	</li>
-</ul>
-<app-hall (data)="manager.halls(managerInfo.$key).push($event)" [halls]="halls"></app-hall>
+<div>
+	<button (click)="show=!show">Show Hall info</button>
+	<app-hall *ngIf="show" (data)="manager.halls(managerInfo.$key).push($event)" [halls]="halls"></app-hall>
+</div>
+<div>
+	<app-add-operators (data)="addOperator($event)"></app-add-operators>
+</div>
+<div>
+	<app-add-snacks [snacks]="snacks" (data)="updateSnacks($event)"></app-add-snacks>
+</div>
+<div  style="margin-top: 2%;">
+	<label for="operatorList">Ticket Operators</label>
+	<ul name="operatorList">
+		<li *ngFor="let operator of ticketOperators | async">
+			{{operator.name}} | Email : {{operator.email}}
+			<button (click)="manager.theaterOperators(managerInfo.$key).remove(operator.$key)">Remove</button>
+		</li>
+	</ul>
+	<!--label for="operatorList">Snacks Vendor</label>
+	<ul name="operatorList">
+		<li *ngFor="let vendor of snacksVendors | async">
+			{{vendor.name}} | Email : {{vendor.email}}
+			<button (click)="manager.snacksVendors(managerInfo.$key).remove(vendor.$key)">Remove</button>
+		</li>
+	</ul-->
+</div>

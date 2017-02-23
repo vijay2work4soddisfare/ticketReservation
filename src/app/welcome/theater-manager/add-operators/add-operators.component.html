@@ -1,5 +1,13 @@
 <form novalidate [formGroup]="form" style="margin-left: 5%;">
-	<div><h3>Add Theater Operator</h3></div>
+	<div><h3>Add Operators </h3></div>
+	<!--div>
+		<label for="operatorType">Operator Type : </label>
+		<select formControlName="operatorType">
+			<option value=''>Select Opreator Type</option>
+			<option value='operator'>Ticket Operator</option>
+			<option value='vendor'>Snacks Vendor</option>
+		</select>
+	</div-->
 	<div>
 		<label for="name">Operator name : </label>
 		<input type="text" name="name" formControlName="name" placeholder="Operator name">

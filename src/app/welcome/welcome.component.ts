@@ -19,6 +19,7 @@ constructor(public af: AngularFire,
       'admin': ['Admin'], 
       'theaterManager': ['TheaterManager'], 
       'theater': ['Theater'], 
+      //'vendor': ['Vendor'], 
       'ticket': ['Ticket']
     }
   }],{relativeTo:this.route});
@@ -35,11 +36,4 @@ constructor(public af: AngularFire,
   ngOnInit() {
   }
 
-
-  /*onSelectTheater() {
-    this.router.navigate(['../','theater'], { relativeTo: this.route });
-  }
-  onSelectTicket() {
-    this.router.navigate(['../','ticket'], { relativeTo: this.route });
-  }*/
 }

@@ -18,6 +18,15 @@ import { FilmComponent } from './theater/film/film.component';
 import { ArrangeShowsComponent } from './theater/arrange-shows/arrange-shows.component';
 import { DisplayShowsComponent } from './theater/display-shows/display-shows.component';
 import { ShowsComponent } from './theater/display-shows/shows/shows.component';
+import { UpdateSchedulesComponent } from './theater/update-schedules/update-schedules.component';
+import { AddSingleScheduleComponent } from './theater/update-schedules/add-single-schedule/add-single-schedule.component';
+import { VendorComponent } from './vendor/vendor.component';
+import { SwitchControlComponent } from './switch-control/switch-control.component';
+import { MoviesComponent } from './ticket/movies/movies.component';
+import { ItemsComponent } from './Vendor/items/items.component';
+import { AddItemsComponent } from './Vendor/add-items/add-items.component';
+import { ActiveOrdersComponent } from './Vendor/active-orders/active-orders.component';
+import { AddSnacksComponent } from './theater-manager/add-snacks/add-snacks.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +35,6 @@ import { ShowsComponent } from './theater/display-shows/shows/shows.component';
 	ReactiveFormsModule,
     WelcomeRoutingModule
   ],
-  declarations: [WelcomeComponent, TheaterComponent, TicketComponent, HallComponent, AdminComponent,  TheaterManagerComponent, AddManagerComponent, AddManagerComponent, AddOperatorsComponent, AddHallComponent, AddHallComponent, HallComponent, AddFilmComponent, FilmComponent, ArrangeShowsComponent, DisplayShowsComponent, ShowsComponent]
+  declarations: [WelcomeComponent, TheaterComponent, TicketComponent, HallComponent, AdminComponent,  TheaterManagerComponent, AddManagerComponent, AddManagerComponent, AddOperatorsComponent, AddHallComponent, AddHallComponent, HallComponent, AddFilmComponent, FilmComponent, ArrangeShowsComponent, DisplayShowsComponent, ShowsComponent, UpdateSchedulesComponent, AddSingleScheduleComponent, VendorComponent, SwitchControlComponent, MoviesComponent, ItemsComponent, AddItemsComponent, ActiveOrdersComponent, AddSnacksComponent]
 })
 export class WelcomeModule { }

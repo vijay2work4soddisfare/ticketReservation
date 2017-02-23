@@ -7,6 +7,7 @@ export class TheaterService {
   operator=new Subject<any>();
   managerKey=new Subject<any>();
   timeKey=new Subject<any>();
+  private managerInfoKey;
   constructor(private af:AngularFire) { 
   	this.af.auth.subscribe(auth=>{
   		if(auth!=undefined) {
@@ -14,15 +15,20 @@ export class TheaterService {
   				if(data.length!=0) {
   					data.map(managerData=>{
   						//console.log("Each manager info :",managerData);
-  						this.af.database.list("operatorLogin/"+managerData.$key).first()
-  							.subscribe(operatorList=>{
-	  							operatorList.map(operator=>{
-	  								//console.log("Each operator info of the manager :",operator);
-	  								if(operator.email==auth.auth.email) {
+  						this.af.database.list("operatorLogin/"+managerData.$key,{query:{
+                orderByChild:"email",
+                equalTo:auth.auth.email
+              }}).first().subscribe(operatorList=>{
+                  if(operatorList.length!=0) {
+                  operatorList.map(operator=>{
+                    //console.log("Each operator info of the manager :",operator);
+	  								//if(operator.email==auth.auth.email) {
+                      this.managerInfoKey=managerData.$key;
 	  									this.operator.next(operator);
 	  									this.managerKey.next(managerData.$key);
-	  								}
-	  							});
+                    //}
+                  });
+	  						}
   							});
   					});
   				}
@@ -55,8 +61,46 @@ export class TheaterService {
   dateOfShows(hallKey){
     return this.af.database.list("date/"+hallKey);
   }
-  showsSchedule(timeKey){
-  	return this.af.database.list("time/"+timeKey);
+  showsSchedule(dateKey){
+    return this.af.database.list("schedules/"+dateKey);
+  }
+  updateObject(path){
+  	return this.af.database.object(path);
+  }
+  removeShowsSchedule(showKey){
+    /*
+    this.af.database.list("halls/"+this.managerInfoKey).first().subscribe(hallInfo=>{
+      if(hallInfo.length!=0) {
+        hallInfo.map(eachHall=>{
+          this.af.database.list("date/"+eachHall.$key).first().subscribe(dateInfo=>{
+            if(dateInfo.length!=0) {
+              dateInfo.map(eachDate=>{
+
+                this.af.database.list("schedules/"+eachDate.$key).first().subscribe(schedulesInfo=>{
+                  if(schedulesInfo.length!=0) {
+                    schedulesInfo.map(eachSchedule=>{
+
+                    });
+                  }
+                });
+              });
+            }
+          });
+        });
+      }
+    });*/
+
+
+    //get all the shows fot this date
+
+    //delete single show
+    /*this.showsSchedule(this.singleSchedule.showKey)
+    .remove(.$key);
+    this.filmsForUser()
+    .remove(.$key);*/
+
+
+    //if last show for the date delete the date
   }
 
 }

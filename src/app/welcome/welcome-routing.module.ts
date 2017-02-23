@@ -4,6 +4,7 @@ import { WelcomeComponent } from './welcome.component';
 import { TheaterComponent } from './theater/theater.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { AdminComponent } from './admin/admin.component';
+import { VendorComponent } from './vendor/vendor.component';
 
 import { TheaterManagerComponent } from './theater-manager/theater-manager.component';
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
    {path: 'Admin', component: AdminComponent, outlet: 'admin'},
    {path: 'TheaterManager', component: TheaterManagerComponent, outlet: 'theaterManager'},
    {path: 'Theater', component: TheaterComponent, outlet: 'theater'},
-   {path: 'Ticket',  component: TicketComponent, outlet: 'ticket'},
+  // {path: 'Vendor',  component: VendorComponent, outlet: 'vendor'},
+   {path: 'Ticket',  component: TicketComponent, outlet: 'ticket'}
   
 
   ]}

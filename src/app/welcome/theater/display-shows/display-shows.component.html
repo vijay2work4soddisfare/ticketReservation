@@ -3,9 +3,8 @@
 <ul name="hallsList">
 	<li *ngFor="let hall of halls | async">
 		{{hall.name}} 
-		<app-shows [hallKey]="hall.$key"></app-shows>
+		<app-shows [films]="films" [hallKey]="hall.$key" [operatorKey]="operatorKey" [managerKey]="managerKey"></app-shows>
 	</li>
 </ul>
 <app-arrange-shows [films]="films" [halls]="halls"
-  (dataDate)="theater.dateOfShows($event)"
-  (dataSchedule)="theater.dateOfShows($event.hall).push({'date':$event.date})"></app-arrange-shows>
+  (dataDate)="dateOfShows($event)"></app-arrange-shows>

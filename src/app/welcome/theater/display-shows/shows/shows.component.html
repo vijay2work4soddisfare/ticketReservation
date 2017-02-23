@@ -1,6 +1,13 @@
 <label for="showsList">Shows</label>
 <ul name="showsList">
 	<li *ngFor="let show of shows | async">
-		<button>{{show.date}}</button>
+		<button (click)="displaySchedules(show.$key);show.view=!show.view">{{show.date}}</button>
+		<button (click)="removeShow(show.$key)">Remove</button>
+		<span *ngIf="show.view">
+			<div *ngFor="let schedule of schedules | async">
+				<app-update-schedules [films]="films" [singleSchedule]="{'scheduleDetails':schedule,'showKey':showKey}"></app-update-schedules>
+			</div>
+			<app-add-single-schedule [showKey]="showKey" [films]="films" [operatorKey]="operatorKey" [managerKey]="managerKey"></app-add-single-schedule>
+		</span>
 	</li>
 </ul>

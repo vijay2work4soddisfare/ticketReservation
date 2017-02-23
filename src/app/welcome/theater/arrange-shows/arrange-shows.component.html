@@ -1,22 +1,20 @@
-<form novalidate [formGroup]="formDate" style="margin-left: 5%;">
+<form novalidate [formGroup]="form" style="margin-left: 5%;">
 	<div><h3>Show schedule</h3></div>
 	<span>
 		<label for="hall">Select Hall : </label>
-		<select type="hall" name="hall" formControlName="hall">
+		<select type="hall" name="hall" formControlName="hall" (change)="enableDate()">
 			<option value="">--Select Hall--</option>
 			<option *ngFor="let hall of halls | async" value="{{hall.$key}}">{{hall.name}}</option>
 		</select>
 	</span> | 
-	<span *ngIf="dateYesterday">
-		<label for="date">Select Date : </label>
-		<input type="date" name="date" formControlName="date" min="{{dateYesterday}}">
-	</span>
 	<span>
-		<button (click)="submitDate()" [disabled]="formDate.invalid">Create show</button>
+		<label for="date">Select Date : </label>
+		<input type="date" name="date" formControlName="date" min="{{dateYesterday}}" (change)="addScheduleView()">
 	</span>
-</form>
-<form *ngIf="dateKey" [formGroup]="formSchedule" style="margin-left: 5%;">	
-	<div formArrayName="schedules">
+	<div formArrayName="schedules" *ngIf="show" style="margin-left: 5%;">
+		<span>
+			<button (click)="addSchedules()">Add Schedules</button>
+		</span>
 		<div *ngFor="let schedule of schedules.controls;let i=index;" [formGroupName]="i">
 			<label for="endTime">Last ticket issuing time</label>
 			<input type="time" formControlName="endTime">
@@ -24,9 +22,11 @@
 				<option value="">--Select Film--</option>
 				<option *ngFor="let film of films | async" value="{{film.name}}">{{film.name}}</option>
 			</select>
-			<input type="number" formControlName="tickets" placeholder="Tickets issued">
-			<button (click)="submitSchedule()">Save</button>
+			<input type="number" formControlName="ticketsReserved" placeholder="Tickets issued">
+			<button *ngIf="i!='0'" (click)="schedules.removeAt(i)">Remove</button>
 		</div>	
-		<button (click)="addSchedules()">Add Schedules</button>
+	</div>
+	<div>
+		<button (click)="submitDate()" [disabled]="form.invalid">Save</button>
 	</div>
 </form>

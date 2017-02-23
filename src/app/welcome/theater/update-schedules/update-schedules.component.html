@@ -1,0 +1,20 @@
+<form [formGroup]="form" style="margin-left: 5%;">	
+	<label for="endTime">Last ticket issuing time</label>
+	<input type="time" formControlName="endTime">
+	<select formControlName="film">
+		<option value="">--Select Film--</option>
+		<option *ngFor="let film of films | async" value="{{film.name}}">{{film.name}}</option>
+	</select>
+	<input type="number" formControlName="ticketsReserved" placeholder="Tickets issued">
+	<button type="submit" (click)="update()" [disabled]="form.invalid || form.pristine">Update</button>
+	<button type="submit"
+	 *ngIf="!form.value.houseFull"
+	 (click)="housefull()">
+		House Full
+	</button>
+	<button *ngIf="form.value.houseFull" type="submit"
+	 (click)="cancelHousefull()">
+		Cancel Housefull
+	</button>
+	<button (click)="cancelShows()" type="submit">Cancel Shows</button>
+</form>

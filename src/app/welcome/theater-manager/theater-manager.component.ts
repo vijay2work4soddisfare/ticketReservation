@@ -12,14 +12,22 @@ export class TheaterManagerComponent implements OnInit {
   	this.manager.managerInfo().subscribe(data=>{
   		this.managerInfo=data;
     	if(this.managerInfo!=undefined) {
-        console.log("operator set with : ",this.managerInfo);
-    		this.operators=this.manager.theaterOperators(this.managerInfo.$key);
+        this.snacks=this.manager.snacks(this.managerInfo.$key);
+        this.ticketOperators=this.manager.theaterOperators(this.managerInfo.$key);
         this.halls=this.manager.halls(this.managerInfo.$key)
-    	}
+      }
     });
   }
+  addOperator($event){
+    //console.log("$vent",$event);
+      this.manager.theaterOperators(this.managerInfo.$key).push({'name':$event.name,'email':$event.email});
+  }
+  updateSnacks($event){
+      this.manager.snacks(this.managerInfo.$key).update($event);
+  }
   halls;
-  operators;
+  ticketOperators;
+  snacks;
   managerInfo;
   ngOnInit() {
   }
